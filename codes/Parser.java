@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 public class Parser {
@@ -27,7 +28,12 @@ public class Parser {
         consume(Token_Type.DHORO,"Missing ধরো");
 
         Token typeTok = advance();
-        String type = typeTok.type == Token_Type.INT_TYPE ? "int" : "float";
+
+if (typeTok.type != Token_Type.INT_TYPE && typeTok.type != Token_Type.FLOAT_TYPE) {
+    throw new RuntimeException("Expected type after ধরো");
+}
+
+String type = typeTok.type == Token_Type.INT_TYPE ? "int" : "float";
 
         Token name = consume(Token_Type.ID,"Missing variable");
 
@@ -60,12 +66,19 @@ public class Parser {
         return node;
     }
 
-    private AST_Node factor() {
-        if (match(Token_Type.NUMBER)) return new NumberNode(previous().lexeme);
-        if (match(Token_Type.ID)) return new VarNode(previous().lexeme);
+private AST_Node factor() {
+    if (match(Token_Type.NUMBER)) return new NumberNode(previous().lexeme);
+    if (match(Token_Type.ID)) return new VarNode(previous().lexeme);
 
-        throw new RuntimeException("Invalid expression");
+    // Add this block:
+    if (match(Token_Type.LPAREN)) {
+        AST_Node expr = expression();
+        consume(Token_Type.RPAREN, "Missing )");
+        return expr;
     }
+
+    throw new RuntimeException("Invalid expression");
+}
 
     private void synchronize() {
         while (!isAtEnd()) {

@@ -1,0 +1,42 @@
+INPUT:
+ধরো সংখ্যা ক = ১০;
+ধরো সংখ্যা খ = ২০;
+ধরো সংখ্যা ফলাফল = ক * খ;
+TOKENS:
+Token{DHORO, 'ধরো'}
+Token{INT_TYPE, 'সংখ্যা'}
+Token{ID, 'ক'}
+Token{ASSIGN, '='}
+Token{NUMBER, '১০'}
+Token{SEMI, ';'}
+Token{DHORO, 'ধরো'}
+Token{INT_TYPE, 'সংখ্যা'}
+Token{ID, 'খ'}
+Token{ASSIGN, '='}
+Token{NUMBER, '২০'}
+Token{SEMI, ';'}
+Token{DHORO, 'ধরো'}
+Token{INT_TYPE, 'সংখ্যা'}
+Token{ID, 'ফলাফল'}
+Token{ASSIGN, '='}
+Token{ID, 'ক'}
+Token{MUL, '*'}
+Token{ID, 'খ'}
+Token{SEMI, ';'}
+Token{EOF, ''}
+TOKENS SIZE: 21
+
+AST:
+Assign (int) ক
+  Number: ১০
+Assign (int) খ
+  Number: ২০
+Assign (int) ফলাফল
+  Op: *
+    Var: ক
+    Var: খ
+
+SYMBOL TABLE:
+ক : int
+ফলাফল : int
+খ : int

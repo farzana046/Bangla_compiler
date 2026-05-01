@@ -40,11 +40,10 @@ public class Semantic_Analyzer {
             return table.get(v.name);
         }
 
-        if (node instanceof NumberNode) {
-            return "int";
-        }
+      if (node instanceof NumberNode num) {
+    return num.value.contains(".") ? "float" : "int";
+}
 
         throw new RuntimeException("Unknown node");
     }
 }
-

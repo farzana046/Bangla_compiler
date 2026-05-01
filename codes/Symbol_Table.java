@@ -4,7 +4,7 @@ public class Symbol_Table {
     private final Map<String,String> table = new HashMap<>();
 
     public void declare(String name,String type) {
-        table.put(name,type);git ad
+        table.put(name,type);
     }
 
     public String get(String name) {

@@ -42,6 +42,7 @@ public class Lexer {
             }
         }
 
+
         tokens.add(new Token(Token_Type.EOF,"",line));
         return tokens;
     }
